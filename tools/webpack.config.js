@@ -4,6 +4,7 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const autoprefixer = require('autoprefixer');
+const LiveReloadPlugin = require('webpack-livereload-plugin');
 
 const projectPath = path.join(__dirname, '..');
 const sourcePath = path.join(projectPath, 'src');
@@ -13,7 +14,11 @@ const assetsPath = 'assets';
 const isProduction = process.argv.indexOf('-p') > -1;
 const nameSuffix = new Date().getTime() + (isProduction ? '.min' : '');
 const port = 8080;
-const extractSass = new ExtractTextPlugin({filename: path.join(assetsPath, `[name]${nameSuffix}.css`), disable: false, allChunks: true});
+const extractSass = new ExtractTextPlugin({
+  filename: path.join(assetsPath, `[name]${nameSuffix}.css`),
+  disable: false,
+  allChunks: true
+});
 
 const config = {
   entry: path.join(sourcePath, 'index.jsx'),
@@ -25,7 +30,7 @@ const config = {
     extensions: ['.js', '.scss']
   },
   plugins: [
-    require('autoprefixer'),
+    autoprefixer,
     extractSass,
     new HtmlWebpackPlugin({
       template: path.join(sourcePath, 'index.html'),
@@ -37,7 +42,7 @@ const config = {
       verbose: false,
       dry: false,
       exclude: ['data']
-    }),
+    })
   ],
   module: {
     rules: [
@@ -54,21 +59,21 @@ const config = {
       }, {
         test: /\.scss$/,
         use: extractSass.extract({
-            use: [{
-                loader: "css-loader"
-            }, {
-                loader: "sass-loader"
-            }],
-            fallback: "style-loader"
+          use: [{
+            loader: 'css-loader'
+          }, {
+            loader: 'sass-loader'
+          }],
+          fallback: 'style-loader'
         })
       }, {
         test: /\.css$/,
-        use: ["style-loader", "css-loader", "postcss-loader"]
+        use: ['style-loader', 'css-loader', 'postcss-loader']
       }, {
         test: /\.(png)$/i,
         loader: 'file?name=[name].[ext]'
       }, {
-         /* root static assets. */
+        /* root static assets. */
         test: /\.ico$/i,
         loader: 'file?name=[name].[ext]'
       }, {
@@ -85,11 +90,16 @@ const config = {
         loader: 'template-minify-loader'
       }
     ]
-  },
-  externals: {
-    react: 'commonjs react'
-  },
+  }
 };
+
+if (process.argv.indexOf('--watch') > -1) {
+  require('serve-local')(distPath, port);
+  config.plugins.push(new LiveReloadPlugin({
+    appendScriptTag: true,
+    ignore: /.(js|json|ico|woff)$/
+  }));
+}
 
 if (isProduction) {
   config.plugins.push(new UglifyJsPlugin());
