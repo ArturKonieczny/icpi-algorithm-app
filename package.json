@@ -1,0 +1,54 @@
+{
+  "name": "icpi-algorithm-app",
+  "version": "1.0.0",
+  "description": "App that helps to understand the basics of iCPI-tree algorithm for finding spatial collocations. ",
+  "main": "src/index.js",
+  "scripts": {
+    "build:watch": "webpack --config tools/webpack.config.js --watch --hide-modules",
+    "build": "webpack --config tools/webpack.config.js --hide-modules",
+    "build:production": "webpack --config tools/webpack.config.js -p --hide-modules"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ArturKonieczny/icpi-algorithm-app.git"
+  },
+  "keywords": [
+    "icpi",
+    "algorithm",
+    "collocation",
+    "spatial"
+  ],
+  "author": "AK",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ArturKonieczny/icpi-algorithm-app/issues"
+  },
+  "homepage": "https://github.com/ArturKonieczny/icpi-algorithm-app#readme",
+  "dependencies": {
+    "react": "^15.5.4",
+    "react-dom": "^15.6.1",
+    "template-minify-loader": "^1.0.0",
+    "webpack": "^2.6.1"
+  },
+  "devDependencies": {
+    "autoprefixer": "^7.1.4",
+    "babel-cli": "^6.24.1",
+    "babel-core": "^6.24.1",
+    "babel-loader": "^7.0.0",
+    "babel-plugin-transform-object-rest-spread": "^6.23.0",
+    "babel-plugin-transform-react-jsx": "^6.24.1",
+    "babel-preset-env": "^1.5.1",
+    "clean-webpack-plugin": "^0.1.17",
+    "css-loader": "^0.28.7",
+    "eslint": "^4.6.1",
+    "eslint-config-qb": "^1.0.0",
+    "eslint-plugin-react": "^7.3.0",
+    "extract-text-webpack-plugin": "^2.1.2",
+    "file-loader": "^0.11.2",
+    "html-webpack-plugin": "^2.30.1",
+    "node-sass": "^4.7.2",
+    "sass-loader": "^6.0.6",
+    "style-loader": "^0.19.1",
+    "uglifyjs-webpack-plugin": "^1.1.6"
+  }
+}
