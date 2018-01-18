@@ -1,5 +1,5 @@
 module.exports = {
-  extends: 'qb',
+  extends: ['qb', "eslint:recommended", "plugin:react/recommended"],
   rules: {
     'no-unused-vars': ['error', {
       'vars': 'all',

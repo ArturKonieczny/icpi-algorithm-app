@@ -48,8 +48,11 @@ const config = {
     rules: [
       {
         test: /\.(js|jsx)$/,
-        include: [sourcePath],
-        exclude: /(node_modules|bower_components|build)/,
+        include: [
+          sourcePath,
+          path.join(projectPath, 'node_modules', 'icpi-tree'),
+          path.join(projectPath, 'node_modules', 'icpi-algorithm')
+        ],
         use: {
           loader: 'babel-loader',
           options: {
