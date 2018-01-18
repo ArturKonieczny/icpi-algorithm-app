@@ -6,6 +6,7 @@ import UserInput from './userInput/index.jsx';
 const defaultState = {
   maxDist: 3,
   minPrev: 0,
+  maxStep: 0,
   traitCount: '',
   vertexCount: '',
   step: 0,
@@ -36,12 +37,17 @@ export default class IcpiApp extends React.Component {
   }
 
   startButton() {
-    const {pointData, icpiTree} = buildIcpi(this.state.inputData, this.state.maxDist);
+    const { pointData, icpiTree } = buildIcpi(this.state.inputData, this.state.maxDist);
     const collocations = findCollocations(pointData, icpiTree);
+    const lastItemIndex = collocations.length - 1;
+    const lastItemLength = Object.keys(collocations.slice(-1)).length;
+    const maxStep = (lastItemLength !== 0) ? lastItemIndex : lastItemIndex - 1;
+
     const newState = {
       pointData,
       icpiTree,
       collocations,
+      maxStep,
       step: 1
     };
 
