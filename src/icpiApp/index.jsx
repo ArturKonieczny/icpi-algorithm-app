@@ -42,12 +42,16 @@ export default class IcpiApp extends React.Component {
     const lastItemIndex = collocations.length - 1;
     const lastItemLength = Object.keys(collocations.slice(-1)).length;
     const maxStep = (lastItemLength !== 0) ? lastItemIndex : lastItemIndex - 1;
+    const traitCount = Object.keys(collocations[0]).length;
+    const vertexCount = pointData.length;
 
     const newState = {
       pointData,
       icpiTree,
       collocations,
       maxStep,
+      traitCount,
+      vertexCount,
       step: 1
     };
 
@@ -65,6 +69,7 @@ export default class IcpiApp extends React.Component {
           minPrev={this.state.minPrev}
           traitCount={this.state.traitCount}
           vertexCount={this.state.vertexCount}
+          maxStep={this.state.maxStep}
           step={this.state.step}
         />
       </div>
