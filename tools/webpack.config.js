@@ -30,7 +30,6 @@ const config = {
     extensions: ['.js', '.scss']
   },
   plugins: [
-    autoprefixer,
     extractSass,
     new HtmlWebpackPlugin({
       template: path.join(sourcePath, 'index.html'),
@@ -65,13 +64,24 @@ const config = {
           use: [{
             loader: 'css-loader'
           }, {
+            loader: 'postcss-loader',
+            options: {
+              plugins: function () {
+                return [autoprefixer]
+              }
+            }
+          }, {
             loader: 'sass-loader'
           }],
           fallback: 'style-loader'
         })
       }, {
         test: /\.css$/,
-        use: ['style-loader', 'css-loader', 'postcss-loader']
+        use: [
+          'style-loader',
+          'css-loader',
+          'postcss-loader'
+        ]
       }, {
         test: /\.(png)$/i,
         loader: 'file?name=[name].[ext]'
