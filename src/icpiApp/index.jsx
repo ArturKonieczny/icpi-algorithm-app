@@ -27,7 +27,9 @@ export default class IcpiApp extends React.Component {
 
   setStateItem(itemName, newData) {
     const newState = {};
-    
+    if (itemName === 'step'){
+      console.log(this.state.collocations[newData]);
+    }
     newState[itemName] = newData;
     this.setState(newState);
   }
@@ -56,6 +58,8 @@ export default class IcpiApp extends React.Component {
       vertexCount,
       step: 1
     };
+
+    console.log(newState.collocations[1]);
 
     this.setState(newState);
   }

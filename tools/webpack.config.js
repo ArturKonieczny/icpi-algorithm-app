@@ -9,7 +9,7 @@ const LiveReloadPlugin = require('webpack-livereload-plugin');
 const projectPath = path.join(__dirname, '..');
 const sourcePath = path.join(projectPath, 'src');
 const distPath = path.join(projectPath, 'doc');
-const dataPath = 'data';
+const filesPath = 'files';
 const assetsPath = 'assets';
 const isProduction = process.argv.indexOf('-p') > -1;
 const nameSuffix = new Date().getTime() + (isProduction ? '.min' : '');
@@ -83,20 +83,23 @@ const config = {
           'postcss-loader'
         ]
       }, {
-        test: /\.(png)$/i,
-        loader: 'file?name=[name].[ext]'
+        test: /\.(png|jpg|gif|txt)$/,
+        use: [
+          {
+            loader: 'file-loader',
+            options: {
+              name: `${path.join(filesPath, '[name].[ext]')}`
+            }
+          }
+        ]
       }, {
         /* root static assets. */
         test: /\.ico$/i,
         loader: 'file?name=[name].[ext]'
       }, {
-        /* static assets */
-        test: /\.woff$/i,
-        loader: `file?name=${path.join(assetsPath, '[name].[ext]')}`
-      }, {
         /* data, config, mocks */
         test: /\.json$/i,
-        loader: `file?name=${path.join(dataPath, '[name].[ext]')}`
+        loader: `file?name=${path.join(filesPath, '[name].[ext]')}`
       }, {
       /* templates */
         test: /\.(html|htm|svg|tpl)$/i,

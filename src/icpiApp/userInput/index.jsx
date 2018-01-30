@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import FileInput from './FileInput.jsx';
 import ButtonInput from './ButtonInput.jsx';
+import TextInput from './TextInput.jsx';
 
 export default class UserInput extends React.Component {
   constructor(props){
@@ -29,10 +30,17 @@ export default class UserInput extends React.Component {
     const isPrevButtonDisabled = (this.props.step <= 1 || !isStartButtonDisabled)
     return (
       <div>
-        <FileInput setStateItem={this.props.setStateItem}/>
+        <div>
+          <FileInput setStateItem={this.props.setStateItem}/>
+          <a href="./files/sample_file.txt" download="sample_file.txt">Sample file.</a>
+        </div>
         <div>
           <p>Feature Count: {this.props.traitCount}</p>
           <p>Vertex Count: {this.props.vertexCount}</p>
+        </div>
+        <div>
+          <TextInput inputLabel='Max. Dist. '/>
+          <TextInput inputLabel='Min. Prev. '/>
         </div>
         <div>
           <ButtonInput name="Reset" doOnClick={this.props.resetButton} isDisabled={isResetButtonDisabled}/>
