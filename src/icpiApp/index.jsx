@@ -27,7 +27,7 @@ export default class IcpiApp extends React.Component {
 
   setStateItem(itemName, newData) {
     const newState = {};
-
+    
     newState[itemName] = newData;
     this.setState(newState);
   }
