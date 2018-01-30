@@ -1,20 +1,22 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-export default class TextInput extends React.Component {
-  constructor(props){
-    super(props);
-  }
+const TextInput = (props) => {
+  const invalid = props.isValid ? {} : {outlineColor: '#FF0000', outlineStyle: 'solid'};
 
-  render() {
-    return (
-      <div>
-        <span>{this.props.inputLabel}</span><input type='text'/>
-      </div>
-    );
-  }
+  return (
+    <div>
+      <span>{props.inputLabel}</span><input type='text' onChange={props.onValueChange} disabled={props.isDisabled} style={invalid}/>
+    </div>
+  );
+
 }
 
 TextInput.propTypes = {
+  isValid: PropTypes.bool,
+  isDisabled: PropTypes.bool,
+  onValueChange: PropTypes.func,
   inputLabel: PropTypes.string
 };
+
+export default TextInput;

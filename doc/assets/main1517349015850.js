@@ -10300,9 +10300,7 @@ var IcpiApp = function (_React$Component) {
     key: 'setStateItem',
     value: function setStateItem(itemName, newData) {
       var newState = {};
-      if (itemName === 'step') {
-        console.log(this.state.collocations[newData]);
-      }
+
       newState[itemName] = newData;
       this.setState(newState);
     }
@@ -10320,7 +10318,7 @@ var IcpiApp = function (_React$Component) {
           pointData = _buildIcpi.pointData,
           icpiTree = _buildIcpi.icpiTree;
 
-      var collocations = (0, _icpiAlgorithm2.default)(pointData, icpiTree);
+      var collocations = (0, _icpiAlgorithm2.default)(pointData, icpiTree, this.state.minPrev);
       var lastItemIndex = collocations.length - 1;
       var lastItemLength = Object.keys(collocations.slice(-1)).length;
       var maxStep = lastItemLength !== 0 ? lastItemIndex : lastItemIndex - 1;
@@ -10336,8 +10334,6 @@ var IcpiApp = function (_React$Component) {
         vertexCount: vertexCount,
         step: 1
       };
-
-      console.log(newState.collocations[1]);
 
       this.setState(newState);
     }
@@ -11454,8 +11450,6 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
 var _react = __webpack_require__(16);
 
 var _react2 = _interopRequireDefault(_react);
@@ -11466,47 +11460,25 @@ var _propTypes2 = _interopRequireDefault(_propTypes);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-var ButtonInput = function (_React$Component) {
-  _inherits(ButtonInput, _React$Component);
-
-  function ButtonInput(props) {
-    _classCallCheck(this, ButtonInput);
-
-    return _possibleConstructorReturn(this, (ButtonInput.__proto__ || Object.getPrototypeOf(ButtonInput)).call(this, props));
-  }
-
-  _createClass(ButtonInput, [{
-    key: 'render',
-    value: function render() {
-      return _react2.default.createElement(
-        'div',
-        null,
-        _react2.default.createElement(
-          'button',
-          { onClick: this.props.doOnClick, disabled: this.props.isDisabled },
-          this.props.name
-        )
-      );
-    }
-  }]);
-
-  return ButtonInput;
-}(_react2.default.Component);
-
-exports.default = ButtonInput;
-
+var ButtonInput = function ButtonInput(props) {
+  return _react2.default.createElement(
+    'div',
+    null,
+    _react2.default.createElement(
+      'button',
+      { onClick: props.doOnClick, disabled: props.isDisabled },
+      props.name
+    )
+  );
+};
 
 ButtonInput.propTypes = {
   isDisabled: _propTypes2.default.bool,
   name: _propTypes2.default.string,
   doOnClick: _propTypes2.default.func
 };
+
+exports.default = ButtonInput;
 
 /***/ }),
 /* 116 */
@@ -11519,8 +11491,6 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
 var _react = __webpack_require__(16);
 
 var _react2 = _interopRequireDefault(_react);
@@ -11531,65 +11501,35 @@ var _propTypes2 = _interopRequireDefault(_propTypes);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+var FileInput = function FileInput(props) {
+  function setFileInput(event) {
+    var freader = new FileReader();
 
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+    freader.onload = function (fileData) {
+      props.setStateItem('inputData', fileData.target.result);
+      props.setStateItem('step', 0);
+    };
 
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-var FileInput = function (_React$Component) {
-  _inherits(FileInput, _React$Component);
-
-  function FileInput(props) {
-    _classCallCheck(this, FileInput);
-
-    var _this = _possibleConstructorReturn(this, (FileInput.__proto__ || Object.getPrototypeOf(FileInput)).call(this, props));
-
-    _this.setFileInput = _this.setFileInput.bind(_this);
-    _this.resetInput = _this.resetInput.bind(_this);
-    return _this;
+    freader.readAsText(event.target.files[0]);
   }
 
-  _createClass(FileInput, [{
-    key: 'setFileInput',
-    value: function setFileInput(event) {
-      var _this2 = this;
+  function resetInput(event) {
+    props.setStateItem('step', -1);
+    event.target.value = '';
+  }
 
-      var freader = new FileReader();
-
-      freader.onload = function (fileData) {
-        _this2.props.setStateItem('inputData', fileData.target.result);
-        _this2.props.setStateItem('step', 0);
-      };
-
-      freader.readAsText(event.target.files[0]);
-    }
-  }, {
-    key: 'resetInput',
-    value: function resetInput(event) {
-      this.props.setStateItem('step', -1);
-      event.target.value = '';
-    }
-  }, {
-    key: 'render',
-    value: function render() {
-      return _react2.default.createElement(
-        'div',
-        null,
-        _react2.default.createElement('input', { type: 'file', onClick: this.resetInput, onChange: this.setFileInput })
-      );
-    }
-  }]);
-
-  return FileInput;
-}(_react2.default.Component);
-
-exports.default = FileInput;
-
+  return _react2.default.createElement(
+    'div',
+    null,
+    _react2.default.createElement('input', { type: 'file', onClick: resetInput, onChange: setFileInput })
+  );
+};
 
 FileInput.propTypes = {
   setStateItem: _propTypes2.default.func
 };
+
+exports.default = FileInput;
 
 /***/ }),
 /* 117 */
@@ -11602,8 +11542,6 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
 var _react = __webpack_require__(16);
 
 var _react2 = _interopRequireDefault(_react);
@@ -11614,46 +11552,29 @@ var _propTypes2 = _interopRequireDefault(_propTypes);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+var TextInput = function TextInput(props) {
+  var invalid = props.isValid ? {} : { outlineColor: '#FF0000', outlineStyle: 'solid' };
 
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-var TextInput = function (_React$Component) {
-  _inherits(TextInput, _React$Component);
-
-  function TextInput(props) {
-    _classCallCheck(this, TextInput);
-
-    return _possibleConstructorReturn(this, (TextInput.__proto__ || Object.getPrototypeOf(TextInput)).call(this, props));
-  }
-
-  _createClass(TextInput, [{
-    key: 'render',
-    value: function render() {
-      return _react2.default.createElement(
-        'div',
-        null,
-        _react2.default.createElement(
-          'span',
-          null,
-          this.props.inputLabel
-        ),
-        _react2.default.createElement('input', { type: 'text' })
-      );
-    }
-  }]);
-
-  return TextInput;
-}(_react2.default.Component);
-
-exports.default = TextInput;
-
+  return _react2.default.createElement(
+    'div',
+    null,
+    _react2.default.createElement(
+      'span',
+      null,
+      props.inputLabel
+    ),
+    _react2.default.createElement('input', { type: 'text', onChange: props.onValueChange, disabled: props.isDisabled, style: invalid })
+  );
+};
 
 TextInput.propTypes = {
+  isValid: _propTypes2.default.bool,
+  isDisabled: _propTypes2.default.bool,
+  onValueChange: _propTypes2.default.func,
   inputLabel: _propTypes2.default.string
 };
+
+exports.default = TextInput;
 
 /***/ }),
 /* 118 */
@@ -11704,8 +11625,14 @@ var UserInput = function (_React$Component) {
 
     var _this = _possibleConstructorReturn(this, (UserInput.__proto__ || Object.getPrototypeOf(UserInput)).call(this, props));
 
+    _this.state = {
+      isMinPrevValid: true,
+      isMaxDistValid: true
+    };
     _this.nextButton = _this.nextButton.bind(_this);
     _this.prevButton = _this.prevButton.bind(_this);
+    _this.checkMinPrev = _this.checkMinPrev.bind(_this);
+    _this.checkMaxDist = _this.checkMaxDist.bind(_this);
     return _this;
   }
 
@@ -11724,12 +11651,36 @@ var UserInput = function (_React$Component) {
       this.props.setStateItem('step', newStep);
     }
   }, {
+    key: 'checkMinPrev',
+    value: function checkMinPrev(event) {
+      var newValue = Number(event.target.value);
+
+      if (!isNaN(newValue) && newValue >= 0 && newValue <= 1) {
+        this.setState({ isMinPrevValid: true });
+        this.props.setStateItem('minPrev', newValue);
+      } else {
+        this.setState({ isMinPrevValid: false });
+      }
+    }
+  }, {
+    key: 'checkMaxDist',
+    value: function checkMaxDist(event) {
+      var newValue = Number(event.target.value);
+      if (!isNaN(newValue) && newValue >= 0) {
+        this.setState({ isMaxDistValid: true });
+        this.props.setStateItem('maxDist', newValue);
+      } else {
+        this.setState({ isMaxDistValid: false });
+      }
+    }
+  }, {
     key: 'render',
     value: function render() {
       var isStartButtonDisabled = this.props.step !== 0;
       var isResetButtonDisabled = this.props.step < 1;
       var isNextButtonDisabled = this.props.step === this.props.maxStep || isResetButtonDisabled;
       var isPrevButtonDisabled = this.props.step <= 1 || !isStartButtonDisabled;
+
       return _react2.default.createElement(
         'div',
         null,
@@ -11762,8 +11713,8 @@ var UserInput = function (_React$Component) {
         _react2.default.createElement(
           'div',
           null,
-          _react2.default.createElement(_TextInput2.default, { inputLabel: 'Max. Dist. ' }),
-          _react2.default.createElement(_TextInput2.default, { inputLabel: 'Min. Prev. ' })
+          _react2.default.createElement(_TextInput2.default, { inputLabel: 'Max. Dist. ', onValueChange: this.checkMaxDist, isValid: this.state.isMaxDistValid }),
+          _react2.default.createElement(_TextInput2.default, { inputLabel: 'Min. Prev. ', onValueChange: this.checkMinPrev, isValid: this.state.isMinPrevValid })
         ),
         _react2.default.createElement(
           'div',

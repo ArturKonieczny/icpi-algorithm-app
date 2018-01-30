@@ -27,9 +27,7 @@ export default class IcpiApp extends React.Component {
 
   setStateItem(itemName, newData) {
     const newState = {};
-    if (itemName === 'step'){
-      console.log(this.state.collocations[newData]);
-    }
+
     newState[itemName] = newData;
     this.setState(newState);
   }
@@ -42,7 +40,7 @@ export default class IcpiApp extends React.Component {
 
   startButton() {
     const { pointData, icpiTree } = buildIcpi(this.state.inputData, this.state.maxDist);
-    const collocations = findCollocations(pointData, icpiTree);
+    const collocations = findCollocations(pointData, icpiTree, this.state.minPrev);
     const lastItemIndex = collocations.length - 1;
     const lastItemLength = Object.keys(collocations.slice(-1)).length;
     const maxStep = (lastItemLength !== 0) ? lastItemIndex : lastItemIndex - 1;
@@ -58,8 +56,6 @@ export default class IcpiApp extends React.Component {
       vertexCount,
       step: 1
     };
-
-    console.log(newState.collocations[1]);
 
     this.setState(newState);
   }
