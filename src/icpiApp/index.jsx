@@ -7,9 +7,9 @@ const defaultState = {
   maxDist: 3,
   minPrev: 0,
   maxStep: 0,
-  traitCount: '',
-  vertexCount: '',
-  step: 0,
+  traitCount: 0,
+  vertexCount: 0,
+  step: -1,
   inputData: '',
   icpiTree: {},
   pointData: [],
@@ -33,7 +33,9 @@ export default class IcpiApp extends React.Component {
   }
 
   resetButton() {
-    this.setState(defaultState);
+    this.setStateItem('traitCount', 0);
+    this.setStateItem('vertexCount', 0);
+    this.setStateItem('step',0);
   }
 
   startButton() {
