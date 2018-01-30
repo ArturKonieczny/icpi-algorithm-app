@@ -67,8 +67,6 @@ export default class IcpiApp extends React.Component {
           setStateItem={this.setStateItem}
           resetButton={this.resetButton}
           startButton={this.startButton}
-          maxDist={this.state.maxDist}
-          minPrev={this.state.minPrev}
           traitCount={this.state.traitCount}
           vertexCount={this.state.vertexCount}
           maxStep={this.state.maxStep}
