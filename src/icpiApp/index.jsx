@@ -63,6 +63,7 @@ export default class IcpiApp extends React.Component {
 
   render() {
     const currentCollocations = this.state.collocations[this.state.step] || {};
+    const prevCollocations = this.state.collocations[this.state.step - 1] || {};
 
     return (
       <div>
@@ -77,6 +78,7 @@ export default class IcpiApp extends React.Component {
         />
         <Visualisation
           collocations={currentCollocations}
+          prevCollocations={prevCollocations}
           icpiTree={this.state.icpiTree}
           pointData={this.state.pointData}
         />
