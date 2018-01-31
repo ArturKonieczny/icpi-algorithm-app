@@ -10263,6 +10263,10 @@ var _index = __webpack_require__(118);
 
 var _index2 = _interopRequireDefault(_index);
 
+var _index3 = __webpack_require__(221);
+
+var _index4 = _interopRequireDefault(_index3);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -10340,6 +10344,8 @@ var IcpiApp = function (_React$Component) {
   }, {
     key: 'render',
     value: function render() {
+      var currentCollocations = this.state.collocations[this.state.step] || {};
+
       return _react2.default.createElement(
         'div',
         null,
@@ -10351,6 +10357,11 @@ var IcpiApp = function (_React$Component) {
           vertexCount: this.state.vertexCount,
           maxStep: this.state.maxStep,
           step: this.state.step
+        }),
+        _react2.default.createElement(_index4.default, {
+          collocations: currentCollocations,
+          icpiTree: this.state.icpiTree,
+          pointData: this.state.pointData
         })
       );
     }
@@ -23746,6 +23757,127 @@ function traverseAllChildren(children, callback, traverseContext) {
 
 module.exports = traverseAllChildren;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
+
+/***/ }),
+/* 221 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(16);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _propTypes = __webpack_require__(26);
+
+var _propTypes2 = _interopRequireDefault(_propTypes);
+
+var _index = __webpack_require__(222);
+
+var _index2 = _interopRequireDefault(_index);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var Visualisation = function (_React$Component) {
+  _inherits(Visualisation, _React$Component);
+
+  function Visualisation(props) {
+    _classCallCheck(this, Visualisation);
+
+    return _possibleConstructorReturn(this, (Visualisation.__proto__ || Object.getPrototypeOf(Visualisation)).call(this, props));
+  }
+
+  _createClass(Visualisation, [{
+    key: 'render',
+    value: function render() {
+      return _react2.default.createElement(
+        'div',
+        null,
+        _react2.default.createElement(_index2.default, { collocations: this.props.collocations, icpiTree: this.props.icpiTree })
+      );
+    }
+  }]);
+
+  return Visualisation;
+}(_react2.default.Component);
+
+exports.default = Visualisation;
+
+
+Visualisation.propTypes = {
+  collocations: _propTypes2.default.object,
+  icpiTree: _propTypes2.default.object,
+  pointData: _propTypes2.default.array
+};
+
+/***/ }),
+/* 222 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(16);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _propTypes = __webpack_require__(26);
+
+var _propTypes2 = _interopRequireDefault(_propTypes);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var TextVisualisation = function (_React$Component) {
+  _inherits(TextVisualisation, _React$Component);
+
+  function TextVisualisation(props) {
+    _classCallCheck(this, TextVisualisation);
+
+    return _possibleConstructorReturn(this, (TextVisualisation.__proto__ || Object.getPrototypeOf(TextVisualisation)).call(this, props));
+  }
+
+  _createClass(TextVisualisation, [{
+    key: 'render',
+    value: function render() {
+      return _react2.default.createElement('div', null);
+    }
+  }]);
+
+  return TextVisualisation;
+}(_react2.default.Component);
+
+exports.default = TextVisualisation;
+
+
+TextVisualisation.propTypes = {
+  collocations: _propTypes2.default.object,
+  icpiTree: _propTypes2.default.object
+};
 
 /***/ })
 /******/ ]);

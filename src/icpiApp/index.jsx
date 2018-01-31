@@ -2,6 +2,7 @@ import React from 'react';
 import buildIcpi from 'icpi-tree';
 import findCollocations from 'icpi-algorithm';
 import UserInput from './userInput/index.jsx';
+import Visualisation from './visualisation/index.jsx';
 
 const defaultState = {
   maxDist: 3,
@@ -61,6 +62,8 @@ export default class IcpiApp extends React.Component {
   }
 
   render() {
+    const currentCollocations = this.state.collocations[this.state.step] || {};
+
     return (
       <div>
         <UserInput
@@ -71,6 +74,11 @@ export default class IcpiApp extends React.Component {
           vertexCount={this.state.vertexCount}
           maxStep={this.state.maxStep}
           step={this.state.step}
+        />
+        <Visualisation
+          collocations={currentCollocations}
+          icpiTree={this.state.icpiTree}
+          pointData={this.state.pointData}
         />
       </div>
     );
