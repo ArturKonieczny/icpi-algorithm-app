@@ -67,8 +67,8 @@ export default class UserInput extends React.Component {
           <p>Vertex Count: {this.props.vertexCount}</p>
         </div>
         <div>
-          <TextInput inputLabel='Max. Dist. ' onValueChange={this.checkMaxDist} isValid={this.state.isMaxDistValid}/>
-          <TextInput inputLabel='Min. Prev. ' onValueChange={this.checkMinPrev} isValid={this.state.isMinPrevValid}/>
+          <TextInput inputLabel='Max. Dist. ' onValueChange={this.checkMaxDist} isValid={this.state.isMaxDistValid} isDisabled={isStartButtonDisabled}/>
+          <TextInput inputLabel='Min. Prev. ' onValueChange={this.checkMinPrev} isValid={this.state.isMinPrevValid} isDisabled={isStartButtonDisabled}/>
         </div>
         <div>
           <ButtonInput name="Reset" doOnClick={this.props.resetButton} isDisabled={isResetButtonDisabled}/>

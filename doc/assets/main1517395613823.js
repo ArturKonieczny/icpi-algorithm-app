@@ -10347,8 +10347,6 @@ var IcpiApp = function (_React$Component) {
           setStateItem: this.setStateItem,
           resetButton: this.resetButton,
           startButton: this.startButton,
-          maxDist: this.state.maxDist,
-          minPrev: this.state.minPrev,
           traitCount: this.state.traitCount,
           vertexCount: this.state.vertexCount,
           maxStep: this.state.maxStep,
@@ -11713,8 +11711,8 @@ var UserInput = function (_React$Component) {
         _react2.default.createElement(
           'div',
           null,
-          _react2.default.createElement(_TextInput2.default, { inputLabel: 'Max. Dist. ', onValueChange: this.checkMaxDist, isValid: this.state.isMaxDistValid }),
-          _react2.default.createElement(_TextInput2.default, { inputLabel: 'Min. Prev. ', onValueChange: this.checkMinPrev, isValid: this.state.isMinPrevValid })
+          _react2.default.createElement(_TextInput2.default, { inputLabel: 'Max. Dist. ', onValueChange: this.checkMaxDist, isValid: this.state.isMaxDistValid, isDisabled: isStartButtonDisabled }),
+          _react2.default.createElement(_TextInput2.default, { inputLabel: 'Min. Prev. ', onValueChange: this.checkMinPrev, isValid: this.state.isMinPrevValid, isDisabled: isStartButtonDisabled })
         ),
         _react2.default.createElement(
           'div',
