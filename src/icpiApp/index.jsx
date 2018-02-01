@@ -77,6 +77,7 @@ export default class IcpiApp extends React.Component {
           step={this.state.step}
         />
         <Visualisation
+          step={this.state.step}
           collocations={currentCollocations}
           prevCollocations={prevCollocations}
           icpiTree={this.state.icpiTree}
