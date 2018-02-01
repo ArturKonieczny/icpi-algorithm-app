@@ -16,7 +16,7 @@ export default class Visualisation extends React.Component {
   highlight(type, values) {
     const newState = {};
     newState[type] = values;
-
+    
     this.setState(newState);
   }
 

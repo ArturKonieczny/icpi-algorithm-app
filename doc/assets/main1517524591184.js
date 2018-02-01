@@ -12090,7 +12090,7 @@ var TableRow = function TableRow(props) {
     if (pointNeighb.length !== 0) {
       prevInstancePointsNeighb.push(_react2.default.createElement(
         'p',
-        { key: index },
+        { onMouseEnter: highlightNeighb, onMouseLeave: deHighlightNeighb, id: point, title: pointNeighb.join(','), key: index },
         '' + pointNeighb.join(', ')
       ));
     } else {
@@ -12107,8 +12107,8 @@ var TableRow = function TableRow(props) {
   }).map(function (instance, index) {
     return _react2.default.createElement(
       'p',
-      { onMouseEnter: highlightInstance, onMouseLeave: deHighlightInstance, title: instance, key: index },
-      '(' + instance + ')'
+      { onMouseEnter: highlightInstance, onMouseLeave: deHighlightInstance, title: instance.join(','), key: index },
+      '(' + instance.join(',') + ')'
     );
   });
 

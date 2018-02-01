@@ -54,7 +54,7 @@ const TableRow = (props) => {
     const pointNeighb = props.icpiTree[`${point}:${props.newTrait}`] || [];
 
     if (pointNeighb.length !== 0) {
-      prevInstancePointsNeighb.push(<p key={index}>{`${pointNeighb.join(', ')}`}</p>);
+      prevInstancePointsNeighb.push(<p onMouseEnter={highlightNeighb} onMouseLeave={deHighlightNeighb} id={point} title={pointNeighb.join(',')} key={index}>{`${pointNeighb.join(', ')}`}</p>);
     } else {
       prevInstancePointsNeighb.push(<p key={index}>&#8709;</p>);
     }
@@ -64,8 +64,8 @@ const TableRow = (props) => {
     return (props.prevInstance.join(',') === instance.slice(0,-1).join(','));
   }).map((instance, index) => {
     return (
-      <p onMouseEnter={highlightInstance} onMouseLeave={deHighlightInstance} title={instance} key={index}>
-        {`(${instance})`}
+      <p onMouseEnter={highlightInstance} onMouseLeave={deHighlightInstance} title={instance.join(',')} key={index}>
+        {`(${instance.join(',')})`}
       </p>
     );
   });
