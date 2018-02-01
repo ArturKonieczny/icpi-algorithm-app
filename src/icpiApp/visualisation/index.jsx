@@ -6,17 +6,19 @@ export default class Visualisation extends React.Component {
   constructor(props){
     super(props);
     this.state = {
-      highlightedInstance: '',
-      highlightedNeighbours: ''
+      highlightedInstance: {},
+      highlightedNeighbours: {}
     }
 
-    this.highlightInstance=this.highlightInstance.bind(this);
-    this.highlightNeighbours=this.highlightNeighbours.bind(this);
+    this.highlight=this.highlight.bind(this);
   }
 
-  highlightInstance() {}
+  highlight(type, values) {
+    const newState = {};
+    newState[type] = values;
 
-  highlightNeighbours() {}
+    this.setState(newState);
+  }
 
   render() {
     if (this.props.step <= 0) {
@@ -30,6 +32,7 @@ export default class Visualisation extends React.Component {
           collocations={this.props.collocations}
           icpiTree={this.props.icpiTree}
           prevCollocations={this.props.prevCollocations}
+          highlight={this.highlight}
         />
       </div>
     );

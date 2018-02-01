@@ -5,6 +5,45 @@ const TableRow = (props) => {
   const prevInstancePoints = [];
   const prevInstancePointsNeighb = [];
 
+  function highlightInstance(event) {
+    const points = event.target.title.split(',');
+    const highlighted = {};
+    points.forEach((point1, index1) => {
+      highlighted[point1] = '#000000';
+      points.forEach((point2, index2) => {
+        if (index2 > index1) {
+          highlighted[`${point1}:${point2}`] = `#FF0000`;
+        }
+      })
+    });
+
+    props.highlight('highlightedInstance', highlighted);
+  }
+
+  function deHighlightInstance() {
+    props.highlight('highlightedInstance', {});
+  }
+
+  function highlightNeighb(event) {
+    const points = event.target.title.split(',');
+    const centerPoint = event.target.id;
+    const highlighted = {};
+
+    highlighted[centerPoint] = `#B0B0B0`;
+    for (const point of points) {
+      highlighted[point] = `#000000`;
+      highlighted[`${centerPoint}:${point}`] = `#FF0000`;
+    }
+
+    props.highlight('highlightedNeighbours', highlighted);
+  }
+
+
+  function deHighlightNeighb() {
+    props.highlight('highlightedNeighbours', {});
+  }
+
+
   props.prevInstance.forEach((point, index) => {
     prevInstancePoints.push(
       <p key={index}>
@@ -25,7 +64,7 @@ const TableRow = (props) => {
     return (props.prevInstance.join(',') === instance.slice(0,-1).join(','));
   }).map((instance, index) => {
     return (
-      <p key={index}>
+      <p onMouseEnter={highlightInstance} onMouseLeave={deHighlightInstance} title={instance} key={index}>
         {`(${instance})`}
       </p>
     );
@@ -38,7 +77,7 @@ const TableRow = (props) => {
   return (
     <tr>
       <td>
-        <p>{`(${props.prevInstance.join(',')})`}</p>
+        <p onMouseEnter={highlightInstance} onMouseLeave={deHighlightInstance} title={`${props.prevInstance}`}>{`(${props.prevInstance.join(',')})`}</p>
       </td>
       <td>
         {prevInstancePoints}
@@ -59,7 +98,8 @@ TableRow.propTypes = {
   prevInstance: PropTypes.array,
   newTrait: PropTypes.string,
   instances: PropTypes.array,
-  icpiTree: PropTypes.object
+  icpiTree: PropTypes.object,
+  highlight: PropTypes.func
 };
 
 export default TableRow;

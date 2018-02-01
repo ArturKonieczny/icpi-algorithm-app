@@ -10,6 +10,7 @@ export default class TextVisualisation extends React.Component {
                 collocationName={key}
                 prevCollocations={this.props.prevCollocations}
                 icpiTree={this.props.icpiTree}
+                highlight={this.props.highlight}
                 key={index}
               />);
     });
@@ -26,6 +27,5 @@ TextVisualisation.propTypes = {
   collocations: PropTypes.object,
   prevCollocations: PropTypes.object,
   icpiTree: PropTypes.object,
-  highlightInstance: PropTypes.func,
-  highlightNeighbours: PropTypes.func
+  highlight: PropTypes.func
 };

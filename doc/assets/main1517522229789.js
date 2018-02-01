@@ -11825,21 +11825,22 @@ var Visualisation = function (_React$Component) {
     var _this = _possibleConstructorReturn(this, (Visualisation.__proto__ || Object.getPrototypeOf(Visualisation)).call(this, props));
 
     _this.state = {
-      highlightedInstance: '',
-      highlightedNeighbours: ''
+      highlightedInstance: {},
+      highlightedNeighbours: {}
     };
 
-    _this.highlightInstance = _this.highlightInstance.bind(_this);
-    _this.highlightNeighbours = _this.highlightNeighbours.bind(_this);
+    _this.highlight = _this.highlight.bind(_this);
     return _this;
   }
 
   _createClass(Visualisation, [{
-    key: 'highlightInstance',
-    value: function highlightInstance() {}
-  }, {
-    key: 'highlightNeighbours',
-    value: function highlightNeighbours() {}
+    key: 'highlight',
+    value: function highlight(type, values) {
+      var newState = {};
+      newState[type] = values;
+
+      this.setState(newState);
+    }
   }, {
     key: 'render',
     value: function render() {
@@ -11854,7 +11855,8 @@ var Visualisation = function (_React$Component) {
           highlightNeighbours: this.highlightNeighbours,
           collocations: this.props.collocations,
           icpiTree: this.props.icpiTree,
-          prevCollocations: this.props.prevCollocations
+          prevCollocations: this.props.prevCollocations,
+          highlight: this.highlight
         })
       );
     }
@@ -12018,6 +12020,64 @@ var TableRow = function TableRow(props) {
   var prevInstancePoints = [];
   var prevInstancePointsNeighb = [];
 
+  function highlightInstance(event) {
+    var points = event.target.title.split(',');
+    var highlighted = {};
+    points.forEach(function (point1, index1) {
+      highlighted[point1] = '#000000';
+      points.forEach(function (point2, index2) {
+        if (index2 > index1) {
+          highlighted[point1 + ':' + point2] = '#FF0000';
+        }
+      });
+    });
+
+    props.highlight('highlightedInstance', highlighted);
+  }
+
+  function deHighlightInstance() {
+    props.highlight('highlightedInstance', {});
+  }
+
+  function highlightNeighb(event) {
+    var points = event.target.title.split(',');
+    var centerPoint = event.target.id;
+    var highlighted = {};
+
+    highlighted[centerPoint] = '#B0B0B0';
+    var _iteratorNormalCompletion = true;
+    var _didIteratorError = false;
+    var _iteratorError = undefined;
+
+    try {
+      for (var _iterator = points[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+        var point = _step.value;
+
+        highlighted[point] = '#000000';
+        highlighted[centerPoint + ':' + point] = '#FF0000';
+      }
+    } catch (err) {
+      _didIteratorError = true;
+      _iteratorError = err;
+    } finally {
+      try {
+        if (!_iteratorNormalCompletion && _iterator.return) {
+          _iterator.return();
+        }
+      } finally {
+        if (_didIteratorError) {
+          throw _iteratorError;
+        }
+      }
+    }
+
+    props.highlight('highlightedNeighbours', highlighted);
+  }
+
+  function deHighlightNeighb() {
+    props.highlight('highlightedNeighbours', {});
+  }
+
   props.prevInstance.forEach(function (point, index) {
     prevInstancePoints.push(_react2.default.createElement(
       'p',
@@ -12047,7 +12107,7 @@ var TableRow = function TableRow(props) {
   }).map(function (instance, index) {
     return _react2.default.createElement(
       'p',
-      { key: index },
+      { onMouseEnter: highlightInstance, onMouseLeave: deHighlightInstance, title: instance, key: index },
       '(' + instance + ')'
     );
   });
@@ -12068,7 +12128,7 @@ var TableRow = function TableRow(props) {
       null,
       _react2.default.createElement(
         'p',
-        null,
+        { onMouseEnter: highlightInstance, onMouseLeave: deHighlightInstance, title: '' + props.prevInstance },
         '(' + props.prevInstance.join(',') + ')'
       )
     ),
@@ -12095,7 +12155,8 @@ TableRow.propTypes = {
   prevInstance: _propTypes2.default.array,
   newTrait: _propTypes2.default.string,
   instances: _propTypes2.default.array,
-  icpiTree: _propTypes2.default.object
+  icpiTree: _propTypes2.default.object,
+  highlight: _propTypes2.default.func
 };
 
 exports.default = TableRow;
@@ -12167,7 +12228,9 @@ var CollocationTable = function (_React$Component) {
           newTrait: newTrait,
           instances: _this2.props.collocation.instances,
           icpiTree: _this2.props.icpiTree,
-          key: index });
+          highlight: _this2.props.highlight,
+          key: index
+        });
       });
 
       return _react2.default.createElement(
@@ -12202,7 +12265,8 @@ CollocationTable.propTypes = {
   collocation: _propTypes2.default.object,
   collocationName: _propTypes2.default.string,
   prevCollocations: _propTypes2.default.object,
-  icpiTree: _propTypes2.default.object
+  icpiTree: _propTypes2.default.object,
+  highlight: _propTypes2.default.func
 };
 
 /***/ }),
@@ -12258,6 +12322,7 @@ var TextVisualisation = function (_React$Component) {
           collocationName: key,
           prevCollocations: _this2.props.prevCollocations,
           icpiTree: _this2.props.icpiTree,
+          highlight: _this2.props.highlight,
           key: index
         });
       });
@@ -12280,8 +12345,7 @@ TextVisualisation.propTypes = {
   collocations: _propTypes2.default.object,
   prevCollocations: _propTypes2.default.object,
   icpiTree: _propTypes2.default.object,
-  highlightInstance: _propTypes2.default.func,
-  highlightNeighbours: _propTypes2.default.func
+  highlight: _propTypes2.default.func
 };
 
 /***/ }),

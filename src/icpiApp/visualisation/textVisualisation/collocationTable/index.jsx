@@ -12,13 +12,15 @@ export default class CollocationTable extends React.Component {
     const tableRows = this.props.prevCollocations[mainComponentName].instances.map((instance, index) => {
       const prevInstance = (typeof instance === 'string') ? [instance] : instance; //hotfix, need to rewrite icpi-algorithm :(
 
-      return <TableRow
+      return (<TableRow
               prevInstance={prevInstance}
               collocation={this.props.collocation}
               newTrait={newTrait}
               instances={this.props.collocation.instances}
               icpiTree={this.props.icpiTree}
-              key={index}/>
+              highlight={this.props.highlight}
+              key={index}
+            />);
     });
 
     return (
@@ -41,5 +43,6 @@ CollocationTable.propTypes = {
   collocation: PropTypes.object,
   collocationName: PropTypes.string,
   prevCollocations: PropTypes.object,
-  icpiTree: PropTypes.object
+  icpiTree: PropTypes.object,
+  highlight: PropTypes.func
 };
