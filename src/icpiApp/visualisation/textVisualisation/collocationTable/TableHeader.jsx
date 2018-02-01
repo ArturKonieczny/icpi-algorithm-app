@@ -1,8 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import getTraitName from '../../dictionaries/traitNames';
 
 const TableHeader = (props) => {
-  const prevCollocationTraits = props.collocationName.split(',');
+  const prevCollocationTraits = props.collocationName
+    .split(',')
+    .map(getTraitName);
+  const collocationName = prevCollocationTraits.join(',');
   const prevCollocationName = prevCollocationTraits.slice(0,-1).join(',');
   const lastTrait = prevCollocationTraits.slice(-1);
 
@@ -17,7 +21,7 @@ const TableHeader = (props) => {
         {`feature ${lastTrait} neighb.:`}
       </th>
       <th>
-        {`Instances (${props.collocationName}):`}
+        {`Instances (${collocationName}):`}
       </th>
     </tr>
   );
