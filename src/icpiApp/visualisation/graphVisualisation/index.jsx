@@ -1,45 +1,49 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Sigma } from 'react-sigma';
+import GraphLoader from './GraphLoader.jsx';
 import settings from './settings';
 import { getTraitColor, getTraitName } from '../dictionaries';
 
 const nodeSize = 1;
 
-const GraphVisualisation = (props) => {
-  const nodes = props.pointData.map((point) => {
-    return {
-      id: point.id,
-      size: nodeSize,
-      x: point.locationX,
-      y: point.locationY,
-      label: `${getTraitName(point.trait)}${point.id}`,
-      color: props.highlighted[point.id] || getTraitColor(point.trait)
-    };
-  });
-  const edges =[];
-  for (const key of Object.keys(props.icpiTree)) {
-    const [ sourcePoint ] = key.split(':');
+export default class GraphVisualisation extends React.Component {
+  render() {
+    const nodes = this.props.pointData.map((point) => {
+      return {
+        id: point.id,
+        size: nodeSize,
+        x: point.locationX,
+        y: point.locationY,
+        label: `${getTraitName(point.trait)}${point.id}`,
+        color: this.props.highlighted[point.id] || getTraitColor(point.trait)
+      };
+    });
 
-    for (const targetPoint of props.icpiTree[key]) {
-      const id = `${sourcePoint}:${targetPoint}`;
-      edges.push({
-        id,
-        source: sourcePoint,
-        target: targetPoint,
-        color: props.highlighted[id] || '#000'
-      });
+    const edges = [];
+    for (const key of Object.keys(this.props.icpiTree)) {
+      const [ sourcePoint ] = key.split(':');
+
+      for (const targetPoint of this.props.icpiTree[key]) {
+        const id = `${sourcePoint}:${targetPoint}`;
+        edges.push({
+          id,
+          source: sourcePoint,
+          target: targetPoint,
+          color: this.props.highlighted[id] || '#000000'
+        });
+      }
     }
+
+    return (
+      <div className='graph-container'>
+        <Sigma settings={settings}>
+          <GraphLoader graph={{nodes, edges}} />
+        </Sigma>
+      </div>
+    );
   }
-
-  return (
-    <div className='graph-container'>
-      <Sigma graph={{nodes, edges}} settings={settings} />
-    </div>
-  );
 }
-
-export default GraphVisualisation;
 
 GraphVisualisation.propTypes = {
   icpiTree: PropTypes.object,
