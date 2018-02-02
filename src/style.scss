@@ -1,3 +1,31 @@
-.app {
+.app-container {
   display: flex;
+  flex-wrap: wrap;
+}
+
+.graph-container {
+  min-width: 400px;
+  width: calc(100vw - 300px);
+}
+
+.text-container {
+  width: 100%;
+  max-height: 238px;
+  overflow-y: scroll;
+  
+  table {
+    width: 100%;
+
+    .text-vis-cell {
+      width: 30%;
+    }
+
+    .text-vis-cell_small {
+      width: 10%;
+    }
+  }
+}
+
+.user-input {
+  width: 250px;
 }

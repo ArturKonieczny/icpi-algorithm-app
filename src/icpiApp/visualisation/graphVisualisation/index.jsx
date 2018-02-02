@@ -9,6 +9,10 @@ const nodeSize = 1;
 
 export default class GraphVisualisation extends React.Component {
   render() {
+    if (this.props.step <= 0) {
+      return <div></div>
+    }
+
     const nodes = this.props.pointData.map((point) => {
       return {
         id: point.id,
@@ -46,6 +50,7 @@ export default class GraphVisualisation extends React.Component {
 }
 
 GraphVisualisation.propTypes = {
+  step: PropTypes.number,
   icpiTree: PropTypes.object,
   pointData: PropTypes.array,
   highlighted: PropTypes.object

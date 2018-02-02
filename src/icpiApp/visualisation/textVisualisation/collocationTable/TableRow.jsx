@@ -76,16 +76,16 @@ const TableRow = (props) => {
 
   return (
     <tr>
-      <td>
+      <td className='text-vis-cell'>
         <p onMouseEnter={highlightInstance} onMouseLeave={deHighlightInstance} title={`${props.prevInstance}`}>{`(${props.prevInstance.join(',')})`}</p>
       </td>
-      <td>
+      <td className='text-vis-cell_small'>
         {prevInstancePoints}
       </td>
-      <td>
+      <td className='text-vis-cell'>
         {prevInstancePointsNeighb}
       </td>
-      <td>
+      <td className='text-vis-cell'>
         {newInstances}
       </td>
     </tr>

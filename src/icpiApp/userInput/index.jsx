@@ -57,7 +57,7 @@ export default class UserInput extends React.Component {
     const isPrevButtonDisabled = (this.props.step <= 1 || !isStartButtonDisabled);
 
     return (
-      <div>
+      <div className='user-input'>
         <div>
           <FileInput setStateItem={this.props.setStateItem}/>
           <a href="./files/sample_file.txt" download="sample_file.txt">Sample file.</a>

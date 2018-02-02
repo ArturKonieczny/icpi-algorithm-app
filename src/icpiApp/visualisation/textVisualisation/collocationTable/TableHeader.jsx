@@ -12,15 +12,15 @@ const TableHeader = (props) => {
 
   return (
     <tr>
-      <th>
+      <th className='text-vis-cell'>
         {`Instances (${prevCollocationName}):`}
       </th>
-      <th>
+      <th className='text-vis-cell_small'>
       </th>
-      <th>
+      <th className='text-vis-cell'>
         {`feature ${lastTrait} neighb.:`}
       </th>
-      <th>
+      <th className='text-vis-cell'>
         {`Instances (${collocationName}):`}
       </th>
     </tr>

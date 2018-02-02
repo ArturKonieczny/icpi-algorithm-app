@@ -4,6 +4,10 @@ import CollocationTable from './collocationTable/index.jsx';
 
 export default class TextVisualisation extends React.Component {
   render() {
+    if (this.props.step <= 0) {
+      return <div></div>
+    }
+
     const collocationArrays = Object.keys(this.props.collocations).map((key, index) => {
       return (<CollocationTable
                 collocation={this.props.collocations[key]}
@@ -16,7 +20,7 @@ export default class TextVisualisation extends React.Component {
     });
 
     return (
-      <div>
+      <div className='text-container'>
         {collocationArrays}
       </div>
     );
@@ -24,6 +28,7 @@ export default class TextVisualisation extends React.Component {
 }
 
 TextVisualisation.propTypes = {
+  step: PropTypes.number,
   collocations: PropTypes.object,
   prevCollocations: PropTypes.object,
   icpiTree: PropTypes.object,

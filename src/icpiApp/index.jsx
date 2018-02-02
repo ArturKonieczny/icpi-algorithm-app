@@ -2,7 +2,7 @@ import React from 'react';
 import buildIcpi from 'icpi-tree';
 import findCollocations from 'icpi-algorithm';
 import UserInput from './userInput/index.jsx';
-import Visualisation from './visualisation/index.jsx';
+import { TextVisualisation, GraphVisualisation } from './visualisation';
 
 const defaultState = {
   maxDist: 3,
@@ -14,16 +14,18 @@ const defaultState = {
   inputData: '',
   icpiTree: {},
   pointData: [],
-  collocations: []
+  collocations: [],
+  highlighted: {}
 };
 
 export default class IcpiApp extends React.Component {
   constructor(props){
     super(props);
-    this.state = defaultState,
-    this.setStateItem = this.setStateItem.bind(this),
-    this.startButton = this.startButton.bind(this),
-    this.resetButton = this.resetButton.bind(this)
+    this.state = defaultState;
+    this.setStateItem = this.setStateItem.bind(this);
+    this.startButton = this.startButton.bind(this);
+    this.resetButton = this.resetButton.bind(this);
+    this.highlight=this.highlight.bind(this);
   }
 
   setStateItem(itemName, newData) {
@@ -61,12 +63,18 @@ export default class IcpiApp extends React.Component {
     this.setState(newState);
   }
 
+  highlight(values) {
+    this.setState({
+      highlighted: values
+    });
+  }
+
   render() {
     const currentCollocations = this.state.collocations[this.state.step] || {};
     const prevCollocations = this.state.collocations[this.state.step - 1] || {};
 
     return (
-      <div>
+      <div className='app-container'>
         <UserInput
           setStateItem={this.setStateItem}
           resetButton={this.resetButton}
@@ -76,12 +84,18 @@ export default class IcpiApp extends React.Component {
           maxStep={this.state.maxStep}
           step={this.state.step}
         />
-        <Visualisation
+        <GraphVisualisation
           step={this.state.step}
-          collocations={currentCollocations}
-          prevCollocations={prevCollocations}
           icpiTree={this.state.icpiTree}
           pointData={this.state.pointData}
+          highlighted={this.state.highlighted}
+        />
+        <TextVisualisation
+          step={this.state.step}
+          collocations={currentCollocations}
+          icpiTree={this.state.icpiTree}
+          prevCollocations={prevCollocations}
+          highlight={this.highlight}
         />
       </div>
     );

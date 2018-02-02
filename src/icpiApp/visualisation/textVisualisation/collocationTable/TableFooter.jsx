@@ -12,13 +12,13 @@ const TableFooter = (props) => {
 
   return (
     <tr>
-      <td>
+      <td className='text-vis-cell'>
       </td>
-      <td>
+      <td className='text-vis-cell_small'>
       </td>
-      <td>
+      <td className='text-vis-cell'>
       </td>
-      <td>
+      <td className='text-vis-cell'>
         {traitPrev}
         <p>{`prev.: ${props.collocation.prev}`}</p>
       </td>
