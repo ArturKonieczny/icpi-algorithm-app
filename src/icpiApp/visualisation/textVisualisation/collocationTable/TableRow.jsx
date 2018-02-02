@@ -54,7 +54,7 @@ const TableRow = (props) => {
     const pointNeighb = props.icpiTree[`${point}:${props.newTrait}`] || [];
 
     if (pointNeighb.length !== 0) {
-      prevInstancePointsNeighb.push(<div className='table-entry' onMouseEnter={highlightNeighb} onMouseLeave={deHighlightNeighb} id={point} title={pointNeighb.join(',')} key={index}>{`${pointNeighb.join(', ')}`}</div>);
+      prevInstancePointsNeighb.push(<div className='table-entry hover-gray' onMouseEnter={highlightNeighb} onMouseLeave={deHighlightNeighb} id={point} title={pointNeighb.join(',')} key={index}>{`${pointNeighb.join(', ')}`}</div>);
     } else {
       prevInstancePointsNeighb.push(<div className='table-entry' key={index}>&#8709;</div>);
     }
@@ -64,7 +64,7 @@ const TableRow = (props) => {
     return (props.prevInstance.join(',') === instance.slice(0,-1).join(','));
   }).map((instance, index) => {
     return (
-      <div className='table-entry' onMouseEnter={highlightInstance} onMouseLeave={deHighlightInstance} title={instance.join(',')} key={index}>
+      <div className='table-entry hover-gray' onMouseEnter={highlightInstance} onMouseLeave={deHighlightInstance} title={instance.join(',')} key={index}>
         {`(${instance.join(',')})`}
       </div>
     );
@@ -77,7 +77,7 @@ const TableRow = (props) => {
   return (
     <tr>
       <td className='text-vis-cell table-entry-cell'>
-        <div className='table-entry' onMouseEnter={highlightInstance} onMouseLeave={deHighlightInstance} title={`${props.prevInstance}`}>{`(${props.prevInstance.join(',')})`}</div>
+        <div className='table-entry hover-gray' onMouseEnter={highlightInstance} onMouseLeave={deHighlightInstance} title={`${props.prevInstance}`}>{`(${props.prevInstance.join(',')})`}</div>
       </td>
       <td className='text-vis-cell-small table-entry-cell'>
         {prevInstancePoints}

@@ -45,8 +45,8 @@ export default class IcpiApp extends React.Component {
     const { pointData, icpiTree } = buildIcpi(this.state.inputData, this.state.maxDist);
     const collocations = findCollocations(pointData, icpiTree, this.state.minPrev);
     const lastItemIndex = collocations.length - 1;
-    const lastItemLength = Object.keys(collocations.slice(-1)).length;
-    const maxStep = (lastItemLength !== 0) ? lastItemIndex : lastItemIndex - 1;
+    const lastItem = collocations.slice(-1);
+    const maxStep = (lastItem.length === 1 && Object.keys(lastItem[0]).length !== 0) ? lastItemIndex : lastItemIndex - 1;
     const traitCount = Object.keys(collocations[0]).length;
     const vertexCount = pointData.length;
 

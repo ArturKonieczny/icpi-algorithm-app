@@ -26,7 +26,7 @@
   "homepage": "https://github.com/ArturKonieczny/icpi-algorithm-app#readme",
   "dependencies": {
     "browserslist": "^2.11.3",
-    "icpi-algorithm": "^1.0.0",
+    "icpi-algorithm": "^1.1.0",
     "icpi-tree": "^2.0.1",
     "react": "^15.5.4",
     "react-dom": "^15.6.1",

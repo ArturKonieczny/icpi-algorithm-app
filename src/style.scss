@@ -28,6 +28,13 @@ $black-color: #000;
         border-bottom: 2px solid $black-color;
         border-top: 2px solid $black-color;
       }
+
+      .hover-gray {
+        &:hover {
+          background-color: $gray-color;
+        }
+      }
+
       .text-vis-cell {
         padding: 10px;
         text-align: left;

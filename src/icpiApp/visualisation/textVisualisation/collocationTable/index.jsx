@@ -10,10 +10,9 @@ export default class CollocationTable extends React.Component {
     const mainComponentName = collocationTraits.slice(0,-1).join(',');
     const newTrait = collocationTraits.slice(-1).pop();
     const tableRows = this.props.prevCollocations[mainComponentName].instances.map((instance, index) => {
-      const prevInstance = (typeof instance === 'string') ? [instance] : instance; //hotfix, need to rewrite icpi-algorithm :(
 
       return (<TableRow
-              prevInstance={prevInstance}
+              prevInstance={instance}
               collocation={this.props.collocation}
               newTrait={newTrait}
               instances={this.props.collocation.instances}
