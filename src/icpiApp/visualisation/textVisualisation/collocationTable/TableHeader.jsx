@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import getTraitName from '../../dictionaries/traitNames';
+import { getTraitName } from '../../dictionaries';
 
 const TableHeader = (props) => {
   const prevCollocationTraits = props.collocationName

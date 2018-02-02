@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import getTraitName from '../../dictionaries/traitNames';
+import { getTraitName } from '../../dictionaries';
 
 const TableFooter = (props) => {
   const traitPrev = props.collocationName.split(',').map((trait, index) => {

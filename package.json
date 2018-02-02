@@ -30,6 +30,7 @@
     "icpi-tree": "^2.0.1",
     "react": "^15.5.4",
     "react-dom": "^15.6.1",
+    "react-sigma": "^1.2.30",
     "template-minify-loader": "^1.0.0",
     "webpack": "^2.6.1"
   },

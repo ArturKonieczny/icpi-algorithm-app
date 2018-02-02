@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import TextVisualisation from './textVisualisation/index.jsx';
+import GraphVisualisation from './graphVisualisation/index.jsx';
 
 export default class Visualisation extends React.Component {
   constructor(props){
@@ -24,6 +25,11 @@ export default class Visualisation extends React.Component {
     }
     return (
       <div>
+        <GraphVisualisation
+          icpiTree={this.props.icpiTree}
+          pointData={this.props.pointData}
+          highlighted={this.state.highlighted}
+        />
         <TextVisualisation
           highlightInstance={this.highlightInstance}
           highlightNeighbours={this.highlightNeighbours}
