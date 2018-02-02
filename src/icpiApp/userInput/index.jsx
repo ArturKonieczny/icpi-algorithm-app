@@ -70,11 +70,11 @@ export default class UserInput extends React.Component {
           <TextInput inputLabel='Max. Dist. ' onValueChange={this.checkMaxDist} isValid={this.state.isMaxDistValid} isDisabled={isStartButtonDisabled}/>
           <TextInput inputLabel='Min. Prev. ' onValueChange={this.checkMinPrev} isValid={this.state.isMinPrevValid} isDisabled={isStartButtonDisabled}/>
         </div>
-        <div>
+        <div className='button-container'>
           <ButtonInput name="Reset" doOnClick={this.props.resetButton} isDisabled={isResetButtonDisabled}/>
           <ButtonInput name="Start" doOnClick={this.props.startButton} isDisabled={isStartButtonDisabled}/>
         </div>
-        <div>
+        <div className='button-container'>
           <ButtonInput name="Prev" doOnClick={this.prevButton} isDisabled={isPrevButtonDisabled} />
           <ButtonInput name="Next" doOnClick={this.nextButton} isDisabled={isNextButtonDisabled} />
         </div>

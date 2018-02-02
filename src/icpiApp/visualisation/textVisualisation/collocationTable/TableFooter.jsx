@@ -5,7 +5,7 @@ import { getTraitName } from '../../dictionaries';
 const TableFooter = (props) => {
   const traitPrev = props.collocationName.split(',').map((trait, index) => {
     return (
-      <p key={index}>{`Feature ${getTraitName(trait)}: ${props.collocation[trait]}`}</p>
+      <div className='table-entry' key={index}>{`Feature ${getTraitName(trait)}: ${props.collocation[trait]}`}</div>
     );
   });
 
@@ -14,12 +14,13 @@ const TableFooter = (props) => {
     <tr>
       <td className='text-vis-cell'>
       </td>
-      <td className='text-vis-cell_small'>
+      <td className='text-vis-cell-small'>
       </td>
       <td className='text-vis-cell'>
       </td>
       <td className='text-vis-cell'>
         {traitPrev}
+        <hr />
         <p>{`prev.: ${props.collocation.prev}`}</p>
       </td>
     </tr>

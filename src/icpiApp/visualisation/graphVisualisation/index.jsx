@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Sigma } from 'react-sigma';
+import Sigma from 'react-sigma/lib/Sigma';
 import GraphLoader from './GraphLoader.jsx';
 import settings from './settings';
 import { getTraitColor, getTraitName } from '../dictionaries';

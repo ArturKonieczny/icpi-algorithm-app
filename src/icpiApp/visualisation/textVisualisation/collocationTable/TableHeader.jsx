@@ -15,7 +15,7 @@ const TableHeader = (props) => {
       <th className='text-vis-cell'>
         {`Instances (${prevCollocationName}):`}
       </th>
-      <th className='text-vis-cell_small'>
+      <th className='text-vis-cell-small'>
       </th>
       <th className='text-vis-cell'>
         {`feature ${lastTrait} neighb.:`}

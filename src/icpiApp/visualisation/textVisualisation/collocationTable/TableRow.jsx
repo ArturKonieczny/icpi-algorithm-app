@@ -46,17 +46,17 @@ const TableRow = (props) => {
 
   props.prevInstance.forEach((point, index) => {
     prevInstancePoints.push(
-      <p key={index}>
+      <div className='table-entry' key={index}>
         {`${point} neighb.`}
-      </p>
+      </div>
     );
 
     const pointNeighb = props.icpiTree[`${point}:${props.newTrait}`] || [];
 
     if (pointNeighb.length !== 0) {
-      prevInstancePointsNeighb.push(<p onMouseEnter={highlightNeighb} onMouseLeave={deHighlightNeighb} id={point} title={pointNeighb.join(',')} key={index}>{`${pointNeighb.join(', ')}`}</p>);
+      prevInstancePointsNeighb.push(<div className='table-entry' onMouseEnter={highlightNeighb} onMouseLeave={deHighlightNeighb} id={point} title={pointNeighb.join(',')} key={index}>{`${pointNeighb.join(', ')}`}</div>);
     } else {
-      prevInstancePointsNeighb.push(<p key={index}>&#8709;</p>);
+      prevInstancePointsNeighb.push(<div className='table-entry' key={index}>&#8709;</div>);
     }
   });
 
@@ -64,28 +64,28 @@ const TableRow = (props) => {
     return (props.prevInstance.join(',') === instance.slice(0,-1).join(','));
   }).map((instance, index) => {
     return (
-      <p onMouseEnter={highlightInstance} onMouseLeave={deHighlightInstance} title={instance.join(',')} key={index}>
+      <div className='table-entry' onMouseEnter={highlightInstance} onMouseLeave={deHighlightInstance} title={instance.join(',')} key={index}>
         {`(${instance.join(',')})`}
-      </p>
+      </div>
     );
   });
 
   if (newInstances.length === 0) {
-    newInstances.push([<p key={0}>&#8709;</p>]);
+    newInstances.push([<div className='table-entry' key={0}>&#8709;</div>]);
   }
 
   return (
     <tr>
-      <td className='text-vis-cell'>
-        <p onMouseEnter={highlightInstance} onMouseLeave={deHighlightInstance} title={`${props.prevInstance}`}>{`(${props.prevInstance.join(',')})`}</p>
+      <td className='text-vis-cell table-entry-cell'>
+        <div className='table-entry' onMouseEnter={highlightInstance} onMouseLeave={deHighlightInstance} title={`${props.prevInstance}`}>{`(${props.prevInstance.join(',')})`}</div>
       </td>
-      <td className='text-vis-cell_small'>
+      <td className='text-vis-cell-small table-entry-cell'>
         {prevInstancePoints}
       </td>
-      <td className='text-vis-cell'>
+      <td className='text-vis-cell table-entry-cell'>
         {prevInstancePointsNeighb}
       </td>
-      <td className='text-vis-cell'>
+      <td className='text-vis-cell table-entry-cell'>
         {newInstances}
       </td>
     </tr>
