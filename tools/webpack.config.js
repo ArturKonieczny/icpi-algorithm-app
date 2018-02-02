@@ -8,7 +8,7 @@ const LiveReloadPlugin = require('webpack-livereload-plugin');
 
 const projectPath = path.join(__dirname, '..');
 const sourcePath = path.join(projectPath, 'src');
-const distPath = path.join(projectPath, 'doc');
+const distPath = path.join(projectPath, 'docs');
 const filesPath = 'files';
 const assetsPath = 'assets';
 const isProduction = process.argv.indexOf('-p') > -1;
