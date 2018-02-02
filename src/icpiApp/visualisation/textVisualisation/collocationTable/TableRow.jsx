@@ -17,11 +17,11 @@ const TableRow = (props) => {
       })
     });
 
-    props.highlight('highlightedInstance', highlighted);
+    props.highlight(highlighted);
   }
 
   function deHighlightInstance() {
-    props.highlight('highlightedInstance', {});
+    props.highlight({});
   }
 
   function highlightNeighb(event) {
@@ -35,12 +35,12 @@ const TableRow = (props) => {
       highlighted[`${centerPoint}:${point}`] = `#FF0000`;
     }
 
-    props.highlight('highlightedNeighbours', highlighted);
+    props.highlight(highlighted);
   }
 
 
   function deHighlightNeighb() {
-    props.highlight('highlightedNeighbours', {});
+    props.highlight({});
   }
 
 

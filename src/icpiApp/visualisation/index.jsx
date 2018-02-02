@@ -6,18 +6,16 @@ export default class Visualisation extends React.Component {
   constructor(props){
     super(props);
     this.state = {
-      highlightedInstance: {},
-      highlightedNeighbours: {}
+      highlighted: {},
     }
 
     this.highlight=this.highlight.bind(this);
   }
 
-  highlight(type, values) {
-    const newState = {};
-    newState[type] = values;
-    
-    this.setState(newState);
+  highlight(values) {
+    this.setState({
+      highlighted: values
+    });
   }
 
   render() {

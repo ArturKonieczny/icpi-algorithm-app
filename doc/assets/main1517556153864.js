@@ -11825,8 +11825,7 @@ var Visualisation = function (_React$Component) {
     var _this = _possibleConstructorReturn(this, (Visualisation.__proto__ || Object.getPrototypeOf(Visualisation)).call(this, props));
 
     _this.state = {
-      highlightedInstance: {},
-      highlightedNeighbours: {}
+      highlighted: {}
     };
 
     _this.highlight = _this.highlight.bind(_this);
@@ -11835,11 +11834,11 @@ var Visualisation = function (_React$Component) {
 
   _createClass(Visualisation, [{
     key: 'highlight',
-    value: function highlight(type, values) {
-      var newState = {};
-      newState[type] = values;
-
-      this.setState(newState);
+    value: function highlight(values) {
+      console.log(values);
+      this.setState({
+        highlighted: values
+      });
     }
   }, {
     key: 'render',
@@ -12032,11 +12031,11 @@ var TableRow = function TableRow(props) {
       });
     });
 
-    props.highlight('highlightedInstance', highlighted);
+    props.highlight(highlighted);
   }
 
   function deHighlightInstance() {
-    props.highlight('highlightedInstance', {});
+    props.highlight({});
   }
 
   function highlightNeighb(event) {
@@ -12071,11 +12070,11 @@ var TableRow = function TableRow(props) {
       }
     }
 
-    props.highlight('highlightedNeighbours', highlighted);
+    props.highlight(highlighted);
   }
 
   function deHighlightNeighb() {
-    props.highlight('highlightedNeighbours', {});
+    props.highlight({});
   }
 
   props.prevInstance.forEach(function (point, index) {
