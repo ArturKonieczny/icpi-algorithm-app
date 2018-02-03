@@ -1,6 +1,6 @@
 # iCPI Algorithm app
 
-[App](https://arturkonieczny.github.io/icpi-algorithm-app/) that helps to understand the basics of iCPI-tree algorithm for finding spatial collocations.
+[App](https://arturkonieczny.github.io/icpi-algorithm-app/index.html) that helps to understand the basics of iCPI-tree algorithm for finding spatial collocations.
 
 ## Usage
 
