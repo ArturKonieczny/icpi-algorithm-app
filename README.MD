@@ -33,10 +33,11 @@ Number, should be between 0 and 1. Default value: 0.
 Download this repository and run npm install.
 
 Scripts:
+```
 npm run build
 npm run build:watch
 npm run build:production
-
+```
 ## Important dependencies
 
 ### Processing input data into iCPI-tree:
