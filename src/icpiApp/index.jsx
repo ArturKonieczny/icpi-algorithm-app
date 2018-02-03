@@ -28,6 +28,11 @@ export default class IcpiApp extends React.Component {
     this.highlight=this.highlight.bind(this);
   }
 
+  /**
+  * Sets new value for the state item with the given name.
+  * @param {String} itemName Name of the item to be changed.
+  * @param {[type]} newData  New value.
+  */
   setStateItem(itemName, newData) {
     const newState = {};
 
@@ -35,12 +40,18 @@ export default class IcpiApp extends React.Component {
     this.setState(newState);
   }
 
+  /**
+   * Resets state to the initial value.
+   */
   resetButton() {
     this.setStateItem('traitCount', 0);
     this.setStateItem('vertexCount', 0);
     this.setStateItem('step',0);
   }
 
+  /**
+   * Initialise the app. Process the uploaded data and display the results.
+   */
   startButton() {
     const { pointData, icpiTree } = buildIcpi(this.state.inputData, this.state.maxDist);
     const collocations = findCollocations(pointData, icpiTree, this.state.minPrev);
@@ -62,7 +73,10 @@ export default class IcpiApp extends React.Component {
 
     this.setState(newState);
   }
-
+  /**
+   * Sets the 'highlighted' state item.
+   * @param  {Object} values Hashmap of vertices and edges to be highlighted on graph.
+   */
   highlight(values) {
     this.setState({
       highlighted: values

@@ -2,11 +2,11 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 const TextInput = (props) => {
-  const invalid = props.isValid ? {} : {outlineColor: '#FF0000', outlineStyle: 'solid'};
+  const invalid = props.isValid ? '' : 'input-invalid';
 
   return (
     <div className='text-input-container'>
-      <span className='input-label'>{props.inputLabel}</span><input className='text-input' type='text' onChange={props.onValueChange} disabled={props.isDisabled} style={invalid}/>
+      <span className='input-label'>{props.inputLabel}</span><input className={`text-input ${invalid}`} type='text' onChange={props.onValueChange} disabled={props.isDisabled} />
     </div>
   );
 

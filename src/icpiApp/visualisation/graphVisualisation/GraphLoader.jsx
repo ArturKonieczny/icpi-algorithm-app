@@ -1,6 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+/**
+ * Helper class for refreshing the Sigma Graph.
+ */
 export default class GraphLoader extends React.PureComponent {
   constructor(props) {
     super(props)

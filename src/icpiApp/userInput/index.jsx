@@ -17,18 +17,28 @@ export default class UserInput extends React.Component {
     this.checkMaxDist = this.checkMaxDist.bind(this);
   }
 
+  /**
+   * Display next step in the algorithm.
+   */
   nextButton() {
     const newStep = this.props.step + 1;
 
     this.props.setStateItem('step', newStep)
   }
 
+  /**
+   * Display previous step of the algorithm.
+   */
   prevButton() {
     const newStep = this.props.step - 1;
 
     this.props.setStateItem('step', newStep)
   }
 
+  /**
+   * Validates user input - Min prev.
+   * @param  {HTML Event} event Triggered on value change.
+   */
   checkMinPrev(event) {
     const newValue = Number(event.target.value);
 
@@ -40,6 +50,10 @@ export default class UserInput extends React.Component {
     }
   }
 
+  /**
+   * Validates user input - Max dist.
+   * @param  {HTML Event} event Triggered on value change.
+   */
   checkMaxDist(event) {
     const newValue = Number(event.target.value);
     if (!isNaN(newValue) && newValue >= 0) {

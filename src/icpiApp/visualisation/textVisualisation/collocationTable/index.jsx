@@ -12,14 +12,14 @@ export default class CollocationTable extends React.Component {
     const tableRows = this.props.prevCollocations[mainComponentName].instances.map((instance, index) => {
 
       return (<TableRow
-              prevInstance={instance}
-              collocation={this.props.collocation}
-              newTrait={newTrait}
-              instances={this.props.collocation.instances}
-              icpiTree={this.props.icpiTree}
-              highlight={this.props.highlight}
-              key={index}
-            />);
+                prevInstance={instance}
+                collocation={this.props.collocation}
+                newTrait={newTrait}
+                instances={this.props.collocation.instances}
+                icpiTree={this.props.icpiTree}
+                highlight={this.props.highlight}
+                key={index}
+              />);
     });
 
     return (

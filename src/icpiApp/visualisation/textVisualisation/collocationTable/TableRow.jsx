@@ -2,9 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 const TableRow = (props) => {
-  const prevInstancePoints = [];
-  const prevInstancePointsNeighb = [];
-
   function highlightInstance(event) {
     const points = event.target.title.split(',');
     const highlighted = {};
@@ -43,7 +40,9 @@ const TableRow = (props) => {
     props.highlight({});
   }
 
-
+  const prevInstancePoints = [];
+  const prevInstancePointsNeighb = [];
+  
   props.prevInstance.forEach((point, index) => {
     prevInstancePoints.push(
       <div className='table-entry' key={index}>
